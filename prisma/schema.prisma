@@ -1,0 +1,157 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Staff {
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
+  password  String
+  firstName String
+  lastName  String
+  roleId    String @db.ObjectId
+}
+
+model Student {
+  id                  String   @id @default(auto()) @map("_id") @db.ObjectId
+  password            String
+  firstName           String
+  lastName            String
+  positionId          String[] @db.ObjectId
+  registrationHistory String[] @db.ObjectId
+  studentYearId       String?  @db.ObjectId
+  role                String   @default("STUDENT")
+}
+
+model Role {
+  id   String   @id @default(auto()) @map("_id") @db.ObjectId
+  name RoleName @unique
+}
+
+model Position {
+  id   String       @id @default(auto()) @map("_id") @db.ObjectId
+  name PositionName @unique
+}
+
+enum PositionName {
+  STUDENT_PRESIDENT
+  CLASS_REPRESENTATIVE
+}
+
+enum RoleName {
+  EXAMINATION_OFFICER
+  LECTURE
+}
+
+model AcademicYear {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  name      String   @unique
+}
+
+model College {
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
+  name String @unique
+}
+
+model Department {
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
+  name      String @unique
+  collegeId String @db.ObjectId
+}
+
+model Programme {
+  id           String @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  level        String
+  departmentId String @db.ObjectId
+  length       Int
+}
+
+model StudentYear {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  studentId      String @db.ObjectId
+  academicYearId String @db.ObjectId
+  programmeId    String @db.ObjectId
+  semesterId     String @db.ObjectId
+  year           Int //1 , 2 . 3 depending on the programme length 
+}
+
+model RegistrationHistory {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  studentYearId  String   @db.ObjectId
+  academicYearId String   @db.ObjectId
+  dateRegistered DateTime @default(now())
+  semesterId     String   @db.ObjectId
+  status         String
+  registreredBy  String
+}
+
+//TODO: Add registration period
+model Semester {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  name           String
+  academicYearId String   @db.ObjectId
+  createdAt      DateTime @default(now())
+}
+
+model CAResult {
+  id               String @id @default(auto()) @map("_id") @db.ObjectId
+  marks            Int?
+  studentId        String @db.ObjectId
+  componentId      String @db.ObjectId
+  studentYearId    String @db.ObjectId
+  courseInstanceId String @db.ObjectId
+}
+
+model UEResult {
+  id               String @id @default(auto()) @map("_id") @db.ObjectId
+  marks            Int?
+  studentId        String @db.ObjectId
+  studentYearId    String @db.ObjectId
+  courseInstanceId String @db.ObjectId
+}
+
+model CAComponent {
+  id               String   @id @default(auto()) @map("_id") @db.ObjectId
+  name             String
+  maxMarks         Int
+  type             String[] @db.ObjectId
+  courseInstanceId String   @db.ObjectId
+}
+
+model CAComponentType {
+  id   String              @id @default(auto()) @map("_id") @db.ObjectId
+  name CAComponentTypeName @unique
+}
+
+enum CAComponentTypeName {
+  NORMAL
+  ASSIGNMENT
+}
+
+//TODO: Add points 
+model Course {
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  code        String
+  unit        Int
+  status      String
+  programmeId String @db.ObjectId
+}
+
+//TODO: Add resources 
+model CourseInstance {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  courseId       String   @db.ObjectId
+  semesterId     String   @db.ObjectId
+  academicYearId String   @db.ObjectId
+  lecturerId     String   @db.ObjectId
+  CAComponents   String[] @db.ObjectId
+}

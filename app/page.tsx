@@ -1,6 +1,9 @@
+import { ThemeSwitcher } from "@/components";
+
 export default function Home() {
   return (
     <div>
+      <ThemeSwitcher />
       <p>
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque
         consequuntur neque possimus obcaecati explicabo voluptas aspernatur?

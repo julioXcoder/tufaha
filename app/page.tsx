@@ -1,22 +1,28 @@
-import { ThemeSwitcher } from "@/components";
+import { Navbar, Sidebar } from "@/components";
 
 export default function Home() {
   return (
     <div>
-      <ThemeSwitcher />
-      <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque
-        consequuntur neque possimus obcaecati explicabo voluptas aspernatur?
-        Quae, fuga. Recusandae unde ad amet! Illum repudiandae quasi
-        reprehenderit, impedit rerum pariatur debitis unde quisquam dolor cumque
-        molestias atque sapiente amet dignissimos at quis a nostrum dolorum non
-        ipsa! Nemo dolore, dicta temporibus quos voluptatibus dignissimos
-        impedit perferendis doloribus quisquam numquam, quo iusto facere
-        corrupti nihil consequuntur iure repudiandae nesciunt at sit eos ratione
-        esse id provident omnis. Quisquam molestiae esse, quo reiciendis
-        dignissimos tenetur eos voluptates, velit, aliquam omnis eum debitis aut
-        vero adipisci dolor. Fuga sequi ex odit dolore! Culpa, voluptate!
-      </p>
+      <Navbar />
+      <Sidebar />
+      <main className="p-4 sm:ml-64">
+        <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi eos
+            explicabo odit quibusdam, aut ea quas? Laudantium aperiam
+            exercitationem dolorem obcaecati saepe nulla esse minima, aliquam
+            fuga cumque sunt dolorum quam eius voluptas fugit facere ducimus
+            praesentium in animi dolore voluptatem dolores! Dicta iure minima a,
+            rerum adipisci eligendi pariatur, ab illo neque velit facilis quae,
+            voluptate sed voluptatum molestiae sequi unde culpa? Aliquam aliquid
+            accusamus voluptates sequi numquam dolore aut, perspiciatis quae
+            adipisci expedita aspernatur perferendis sunt. Omnis possimus
+            tenetur harum nisi debitis. Repudiandae, animi nam placeat commodi
+            nisi accusamus distinctio ratione reprehenderit ex nihil! Blanditiis
+            dicta minus quia.
+          </p>
+        </div>
+      </main>
     </div>
   );
 }

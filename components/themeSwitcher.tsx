@@ -1,8 +1,9 @@
-// app/components/ThemeSwitcher.tsx
 "use client";
 
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { MdLightMode, MdDarkMode } from "react-icons/md";
+import { Switch } from "@nextui-org/react";
 
 export function ThemeSwitcher() {
   const [mounted, setMounted] = useState(false);
@@ -16,9 +17,14 @@ export function ThemeSwitcher() {
 
   return (
     <div>
-      The current theme is: {theme}
-      <button onClick={() => setTheme("light")}>Light Mode</button>
-      <button onClick={() => setTheme("dark")}>Dark Mode</button>
+      <Switch
+        color="success"
+        size="sm"
+        isSelected={theme === "dark"}
+        endContent={<MdLightMode />}
+        startContent={<MdDarkMode />}
+        onValueChange={(isSelected) => setTheme(isSelected ? "dark" : "light")}
+      />
     </div>
   );
 }

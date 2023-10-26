@@ -1,3 +1,5 @@
+import Navbar from "./navbar";
+import Sidebar from "./sidebar";
 import { ThemeSwitcher } from "./themeSwitcher";
 
-export { ThemeSwitcher };
+export { Navbar, Sidebar, ThemeSwitcher };

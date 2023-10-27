@@ -1,11 +1,12 @@
-import { Navbar, Sidebar } from "@/components";
-
+import { Button } from "@nextui-org/react";
 import Link from "next/link";
 
 export default function Home() {
   return (
-    <div>
-      <Link href="/student_portal/dashboard">Student Portal</Link>
+    <div className="flex h-screen w-screen items-center justify-center">
+      <Button>
+        <Link href="/student_portal/dashboard">Student Portal</Link>
+      </Button>
       {/* <Navbar /> */}
       {/* <Sidebar /> */}
       {/* <main className="p-4 sm:ml-64">

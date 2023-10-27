@@ -1,8 +1,8 @@
 "use client";
 
 import { Accordion, AccordionItem, Chip } from "@nextui-org/react";
-import { BiSolidBook } from "react-icons/bi";
 import { MdCheckCircle, MdOutlineAlarm } from "react-icons/md";
+import { FaFileAlt } from "react-icons/fa";
 
 interface Props {
   title: string;
@@ -25,25 +25,16 @@ const Exam = ({ title, description }: Props) => {
     >
       <AccordionItem
         className="my-2"
-        startContent={<BiSolidBook size={24} className="text-primary" />}
+        startContent={<FaFileAlt size={30} className="text-danger" />}
         subtitle={
           <div className="flex space-x-1">
             <Chip className="text-xs" size="sm">
               Exam
             </Chip>
-            {/* <Chip
-              startContent={<MdCheckCircle size={18} />}
-              variant="faded"
-              color="success"
-              className="text-xs"
-              size="sm"
-            >
-              Submitted
-            </Chip> */}
             <Chip
               startContent={<MdOutlineAlarm size={16} />}
               variant="light"
-              color="danger"
+              color="default"
               className="text-xs"
               size="sm"
             >

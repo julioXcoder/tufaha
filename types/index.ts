@@ -24,6 +24,7 @@ interface Task extends BaseAssessment {
   type: AssessmentType.TASK;
   title: string;
   description: string;
+  submitted: boolean;
   // Add any other task-specific properties here
 }
 

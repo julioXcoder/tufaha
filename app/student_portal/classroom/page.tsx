@@ -11,7 +11,7 @@ import { MdBarChart } from "react-icons/md";
 import { BiSolidBarChartAlt2 } from "react-icons/bi";
 
 const tabs: Tab[] = [
-  { title: "assignments", Component: Assignments, Icon: FaTasks },
+  { title: "task/exams", Component: Assignments, Icon: FaTasks },
   { title: "resources", Component: Resources, Icon: BsBoxes },
   { title: "results", Component: Results, Icon: BiSolidBarChartAlt2 },
 ];

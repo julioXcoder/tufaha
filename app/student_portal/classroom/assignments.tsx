@@ -1,7 +1,7 @@
 "use client";
 
 import { AssessmentType, CourseAssessment } from "@/types";
-import { Accordion, AccordionItem } from "@nextui-org/react";
+import { Accordion, AccordionItem, Divider } from "@nextui-org/react";
 import { Fragment } from "react";
 import { MdAdd, MdRemove } from "react-icons/md";
 import Exam from "./exam";
@@ -17,6 +17,7 @@ const courseAssessments: CourseAssessment[] = [
         type: AssessmentType.TASK,
         title: "Task 1",
         description: "This is the first task for Course 1.",
+        submitted: true,
       },
       {
         id: "exam1",
@@ -35,6 +36,7 @@ const courseAssessments: CourseAssessment[] = [
         type: AssessmentType.TASK,
         title: "Task 2",
         description: "This is the first task for Course 2.",
+        submitted: false,
       },
       {
         id: "exam2",
@@ -56,10 +58,7 @@ const Assignments = () => {
               <div>
                 {isOpen ? (
                   <span>
-                    <MdRemove
-                      style={{ transform: "rotate(90deg)" }}
-                      size={22}
-                    />
+                    <MdRemove className="rotate-90" size={22} />
                   </span>
                 ) : (
                   <MdAdd size={22} />
@@ -70,15 +69,22 @@ const Assignments = () => {
             aria-label="Accordion 1"
             title={name}
           >
-            {Assessment.map((item, index) => (
-              <Fragment key={index}>
-                {item.type === AssessmentType.TASK ? (
-                  <Task title={item.title} description={item.description} />
-                ) : item.type === AssessmentType.EXAM ? (
-                  <Exam title={item.title} description={item.description} />
-                ) : null}
-              </Fragment>
-            ))}
+            <Divider />
+            <div className="rounded-md border-2 border-dashed border-gray-200 p-4 dark:border-gray-700">
+              {Assessment.map((item, index) => (
+                <Fragment key={index}>
+                  {item.type === AssessmentType.TASK ? (
+                    <Task
+                      submitted={item.submitted}
+                      title={item.title}
+                      description={item.description}
+                    />
+                  ) : item.type === AssessmentType.EXAM ? (
+                    <Exam title={item.title} description={item.description} />
+                  ) : null}
+                </Fragment>
+              ))}
+            </div>
           </AccordionItem>
         ))}
       </Accordion>

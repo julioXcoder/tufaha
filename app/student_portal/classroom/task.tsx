@@ -9,15 +9,16 @@ import {
   Divider,
   Textarea,
 } from "@nextui-org/react";
-import { BiSolidBook } from "react-icons/bi";
-import { MdCheckCircle, MdOutlineAlarm } from "react-icons/md";
+import { FaBook } from "react-icons/fa";
+import { MdCheckCircle, MdOutlineAlarm, MdHourglassTop } from "react-icons/md";
 
 interface Props {
   title: string;
   description: string;
+  submitted: boolean;
 }
 
-const Task = ({ title, description }: Props) => {
+const Task = ({ title, description, submitted }: Props) => {
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -35,6 +36,8 @@ const Task = ({ title, description }: Props) => {
     fileInputRef.current?.click();
   };
 
+  const iconSize = 15;
+
   return (
     <Accordion
       showDivider={false}
@@ -50,23 +53,36 @@ const Task = ({ title, description }: Props) => {
     >
       <AccordionItem
         className="my-2"
-        startContent={<BiSolidBook size={24} className="text-primary" />}
+        startContent={<FaBook size={30} className="text-primary" />}
         subtitle={
           <div className="flex space-x-1">
             <Chip className="text-xs" size="sm">
               Task
             </Chip>
+            {submitted ? (
+              <Chip
+                startContent={<MdCheckCircle size={iconSize} />}
+                variant="faded"
+                color="success"
+                className="text-xs"
+                size="sm"
+              >
+                Submitted
+              </Chip>
+            ) : (
+              <Chip
+                startContent={<MdHourglassTop size={iconSize} />}
+                variant="faded"
+                color="warning"
+                className="text-xs"
+                size="sm"
+              >
+                Pending
+              </Chip>
+            )}
+
             <Chip
-              startContent={<MdCheckCircle size={18} />}
-              variant="faded"
-              color="success"
-              className="text-xs"
-              size="sm"
-            >
-              Submitted
-            </Chip>
-            <Chip
-              startContent={<MdOutlineAlarm size={16} />}
+              startContent={<MdOutlineAlarm size={iconSize} />}
               variant="light"
               color="danger"
               className="text-xs"

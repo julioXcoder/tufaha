@@ -1,10 +1,8 @@
-import React from "react";
-
 import { Calender } from "@/components";
 import StudentCard from "../studentCard";
+import BlogList from "./blogList";
 import StudentLectures from "./studentLectures";
 import WelcomeBlogCard from "./welcomeBlogCard";
-import BlogList from "./blogList";
 
 const StudentDashboardPage = () => {
   return (
@@ -21,7 +19,7 @@ const StudentDashboardPage = () => {
         <div className="hidden lg:flex">
           <Calender />
         </div>
-        <div className="bg-section-light dark:bg-section-dark mt-2 h-[17.5rem] overflow-y-hidden rounded-lg">
+        <div className="mt-2 h-[17.5rem] overflow-y-hidden rounded-lg bg-section-light dark:bg-section-dark">
           <StudentLectures />
         </div>
       </div>

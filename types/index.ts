@@ -3,7 +3,13 @@ import { IconType } from "react-icons";
 interface Path {
   title: string;
   path: string;
-  Icon: IconType;
+  Icon?: IconType;
 }
 
-export type { Path };
+interface Tab {
+  title: string;
+  Component: React.ComponentType;
+  Icon?: IconType;
+}
+
+export type { Path, Tab };

@@ -24,14 +24,17 @@ const Sidebar = ({ links }: Props) => {
                     : ""
                 }`}
               >
-                <Icon
-                  size={26}
-                  className={`flex-shrink-0 transition duration-75 group-hover:text-gray-900 dark:group-hover:text-white ${
-                    pathname.startsWith(path)
-                      ? "text-gray-900 dark:text-white"
-                      : "text-gray-500 dark:text-gray-400"
-                  }`}
-                />
+                {Icon && (
+                  <Icon
+                    size={26}
+                    className={`flex-shrink-0 transition duration-75 group-hover:text-gray-900 dark:group-hover:text-white ${
+                      pathname.startsWith(path)
+                        ? "text-gray-900 dark:text-white"
+                        : "text-gray-500 dark:text-gray-400"
+                    }`}
+                  />
+                )}
+
                 <span className="ml-3 capitalize">{title}</span>
               </Link>
             </li>

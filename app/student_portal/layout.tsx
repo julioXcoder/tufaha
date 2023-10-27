@@ -5,16 +5,22 @@ import { Path } from "@/types";
 import { ReactNode } from "react";
 import { BsGridFill } from "react-icons/bs";
 import { IoNewspaperOutline } from "react-icons/io5";
+import { SiGoogleclassroom } from "react-icons/si";
 
 const links: Path[] = [
   {
     title: "dashboard",
-    path: "/",
+    path: "/student_portal/dashboard",
     Icon: BsGridFill,
   },
   {
+    title: "classroom",
+    path: "/student_portal/classroom",
+    Icon: SiGoogleclassroom,
+  },
+  {
     title: "gazette",
-    path: "/student/application/results",
+    path: "/student_portal/gazette",
     Icon: IoNewspaperOutline,
   },
 ];

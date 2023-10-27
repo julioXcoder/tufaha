@@ -1,26 +1,14 @@
 "use client";
 
-import { usePathname } from "next/navigation";
-import Link from "next/link";
-import { IoNewspaperOutline } from "react-icons/io5";
-import { BsGridFill } from "react-icons/bs";
-
 import { Path } from "@/types";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-const links: Path[] = [
-  {
-    title: "dashboard",
-    path: "/",
-    Icon: BsGridFill,
-  },
-  {
-    title: "gazette",
-    path: "/student/application/results",
-    Icon: IoNewspaperOutline,
-  },
-];
+interface Props {
+  links: Path[];
+}
 
-const Sidebar = () => {
+const Sidebar = ({ links }: Props) => {
   const pathname = usePathname();
   return (
     <aside className="fixed left-0 top-0 z-40 h-screen w-64 -translate-x-full border-r border-gray-200 bg-white pt-20 transition-transform dark:border-gray-700 dark:bg-gray-800 sm:translate-x-0">
@@ -28,7 +16,7 @@ const Sidebar = () => {
         <ul className="space-y-2 font-medium">
           {links.map(({ title, path, Icon }, index) => (
             <li key={index}>
-              <a
+              <Link
                 href={path}
                 className={`group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 ${
                   pathname.startsWith(path)
@@ -45,7 +33,7 @@ const Sidebar = () => {
                   }`}
                 />
                 <span className="ml-3 capitalize">{title}</span>
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

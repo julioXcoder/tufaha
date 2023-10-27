@@ -1,28 +1,25 @@
 import { Navbar, Sidebar } from "@/components";
 
+import Link from "next/link";
+
 export default function Home() {
   return (
     <div>
-      <Navbar />
-      <Sidebar />
-      <main className="p-4 sm:ml-64">
+      <Link href="/student_portal/dashboard">Student Portal</Link>
+      {/* <Navbar /> */}
+      {/* <Sidebar /> */}
+      {/* <main className="p-4 sm:ml-64">
         <div className="mt-14 rounded-lg border-2 border-dashed border-gray-200 p-4 dark:border-gray-700">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi eos
-            explicabo odit quibusdam, aut ea quas? Laudantium aperiam
-            exercitationem dolorem obcaecati saepe nulla esse minima, aliquam
-            fuga cumque sunt dolorum quam eius voluptas fugit facere ducimus
-            praesentium in animi dolore voluptatem dolores! Dicta iure minima a,
-            rerum adipisci eligendi pariatur, ab illo neque velit facilis quae,
-            voluptate sed voluptatum molestiae sequi unde culpa? Aliquam aliquid
-            accusamus voluptates sequi numquam dolore aut, perspiciatis quae
-            adipisci expedita aspernatur perferendis sunt. Omnis possimus
-            tenetur harum nisi debitis. Repudiandae, animi nam placeat commodi
-            nisi accusamus distinctio ratione reprehenderit ex nihil! Blanditiis
-            dicta minus quia.
-          </p>
+          <div className="lg:flex lg:justify-between">
+            <div className="lg:col-span-2 lg:mr-72"></div>
+
+            <div className="hidden h-[calc(100vh-8rem)] lg:flex"></div>
+            <div className="bg-red-500 lg:fixed lg:right-6 lg:top-20 lg:h-[calc(100vh-6rem)] lg:w-72 lg:p-2">
+              left
+            </div>
+          </div>
         </div>
-      </main>
+      </main> */}
     </div>
   );
 }

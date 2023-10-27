@@ -1,7 +1,9 @@
 "use client";
 
 import logo from "@/public/logo.png";
+import Link from "next/link";
 import {
+  Avatar,
   Dropdown,
   DropdownItem,
   DropdownMenu,
@@ -12,6 +14,7 @@ import Image from "next/image";
 import { BiMenuAltLeft } from "react-icons/bi";
 import { FaSortDown, FaUser } from "react-icons/fa";
 import { MdSchool } from "react-icons/md";
+import { ThemeSwitcher } from "./themeSwitcher";
 
 const Navbar = () => {
   return (
@@ -33,7 +36,7 @@ const Navbar = () => {
               </DropdownMenu>
             </Dropdown>
 
-            <a href="/" className="ml-2 flex md:mr-24">
+            <Link href="/" className="ml-2 flex md:mr-24">
               <Image
                 src={logo}
                 width={50}
@@ -41,31 +44,35 @@ const Navbar = () => {
                 className="mr-3"
                 alt="SIMS Logo"
               />
-              <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white sm:text-2xl">
-                SIMS
+              <span className="hidden self-center whitespace-nowrap text-xl font-semibold dark:text-white sm:flex sm:text-2xl">
+                Student Portal
               </span>
-            </a>
+            </Link>
           </div>
           <div className="flex items-center">
             <div className="ml-3 flex items-center">
               <div className="flex items-center gap-x-1">
-                {/* <ThemeSwitcher /> */}
+                <ThemeSwitcher />
                 <Dropdown>
                   <DropdownTrigger>
                     <span className="flex cursor-pointer items-center gap-x-1">
-                      {/* <Avatar src="/gon.png" size="md" /> */}
-                      <User
-                        name="Gon Freecss"
-                        description={
-                          <span className="flex items-center gap-x-1">
-                            <MdSchool color="silver" />
-                            Computer Science
-                          </span>
-                        }
-                        avatarProps={{
-                          src: "/gon.png",
-                        }}
-                      />
+                      <span className="sm:hidden">
+                        <Avatar src="/gon.png" size="md" />
+                      </span>
+                      <span className="hidden sm:flex">
+                        <User
+                          name="Gon Freecss"
+                          description={
+                            <span className="flex items-center gap-x-1">
+                              <MdSchool color="silver" />
+                              Computer Science
+                            </span>
+                          }
+                          avatarProps={{
+                            src: "/gon.png",
+                          }}
+                        />
+                      </span>
                       <FaSortDown />
                     </span>
                   </DropdownTrigger>
@@ -83,63 +90,6 @@ const Navbar = () => {
                   </DropdownMenu>
                 </Dropdown>
               </div>
-              {/* <div
-                className="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"
-                id="dropdown-user"
-              >
-                <div className="px-4 py-3" role="none">
-                  <p
-                    className="text-sm text-gray-900 dark:text-white"
-                    role="none"
-                  >
-                    Neil Sims
-                  </p>
-                  <p
-                    className="text-sm font-medium text-gray-900 truncate dark:text-gray-300"
-                    role="none"
-                  >
-                    neil.sims@flowbite.com
-                  </p>
-                </div>
-                <ul className="py-1" role="none">
-                  <li>
-                    <a
-                      href="#"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                      role="menuitem"
-                    >
-                      Dashboard
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                      role="menuitem"
-                    >
-                      Settings
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                      role="menuitem"
-                    >
-                      Earnings
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                      role="menuitem"
-                    >
-                      Sign out
-                    </a>
-                  </li>
-                </ul>
-              </div> */}
             </div>
           </div>
         </div>

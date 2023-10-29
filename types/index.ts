@@ -47,5 +47,29 @@ interface Tab {
   Icon?: IconType;
 }
 
-export type { Path, Tab, CourseAssessment };
+type UploadFileResponse =
+  | { data: UploadData; error: null }
+  | { data: null; error: UploadError };
+
+type UploadData = {
+  key: string;
+  url: string;
+  name: string;
+  size: number;
+};
+
+type UploadError = {
+  code: string;
+  message: string;
+  data: any;
+};
+
 export { AssessmentType };
+export type {
+  CourseAssessment,
+  Path,
+  Tab,
+  UploadData,
+  UploadError,
+  UploadFileResponse,
+};

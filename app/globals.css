@@ -28,18 +28,7 @@
 
 /* Style for the active day */
 .fc-day.fc-day-today {
-  color: #3b82f6;
+  color: #ff5733;
   font-weight: 800;
   background-color: transparent !important;
 }
-
-/* .fc-day.fc-day-today::before {
-  content: "";
-  display: block;
-  width: 30px; 
-  height: 30px; 
-  background-color: #3b82f6;
-  border-radius: 50%;
-  position: absolute;
-  transform: translate(35%, -5%);
-} */

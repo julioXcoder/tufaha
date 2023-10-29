@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, ChangeEvent, useRef } from "react";
+import { UploadFileResponse } from "@/types";
 import {
   Accordion,
   AccordionItem,
@@ -9,8 +9,9 @@ import {
   Divider,
   Textarea,
 } from "@nextui-org/react";
+import { useRef, useState } from "react";
 import { FaBook } from "react-icons/fa";
-import { MdCheckCircle, MdOutlineAlarm, MdHourglassTop } from "react-icons/md";
+import { MdCheckCircle, MdHourglassTop, MdOutlineAlarm } from "react-icons/md";
 
 interface Props {
   title: string;
@@ -20,8 +21,8 @@ interface Props {
 
 const Task = ({ title, description, submitted }: Props) => {
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+  const [isLoading, setLoading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
-
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
       setSelectedFiles(Array.from(event.target.files));
@@ -34,6 +35,39 @@ const Task = ({ title, description, submitted }: Props) => {
 
   const handleButtonClick = () => {
     fileInputRef.current?.click();
+  };
+
+  const handleUpload = async () => {
+    setLoading(true);
+    const formData = new FormData();
+
+    selectedFiles.forEach((file) => {
+      formData.append("files", file);
+    });
+
+    try {
+      const response = await fetch("/api/upload", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error("Upload failed");
+      }
+
+      const uploadedImage: UploadFileResponse[] = await response.json();
+      uploadedImage.forEach(({ data, error }) => {
+        if (data) {
+          console.log("url", data.url);
+        } else if (error) {
+          console.log("error", error.message);
+        }
+      });
+    } catch (error) {
+      console.error("Error:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const iconSize = 15;
@@ -95,7 +129,7 @@ const Task = ({ title, description, submitted }: Props) => {
         title={title}
       >
         <div>
-          <p>{description}</p>
+          <p className="text-gray-500">{description}</p>
           <Divider className="my-2" />
           <Textarea
             label="Work Summary"
@@ -127,8 +161,10 @@ const Task = ({ title, description, submitted }: Props) => {
               ))}
             </div>
           </div>
-          <div className="flex w-full justify-end">
-            <button>Submit</button>
+          <div className="flex justify-end">
+            <Button onClick={handleUpload} color="success">
+              {isLoading ? "Submitting" : "Submit"}
+            </Button>
           </div>
         </div>
       </AccordionItem>

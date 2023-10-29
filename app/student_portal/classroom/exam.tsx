@@ -45,7 +45,7 @@ const Exam = ({ title, description }: Props) => {
         title={title}
       >
         <div>
-          <p>{description}</p>
+          <p className="text-gray-500">{description}</p>
         </div>
       </AccordionItem>
     </Accordion>

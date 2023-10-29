@@ -50,45 +50,48 @@ const courseAssessments: CourseAssessment[] = [
 
 const Assignments = () => {
   return (
-    <div>
-      <Accordion variant="splitted">
-        {courseAssessments.map(({ name, Assessment }, index) => (
-          <AccordionItem
-            indicator={({ isOpen }) => (
-              <div>
-                {isOpen ? (
-                  <span>
-                    <MdRemove className="rotate-90" size={22} />
-                  </span>
-                ) : (
-                  <MdAdd size={22} />
-                )}
-              </div>
-            )}
-            key={index}
-            aria-label="Accordion 1"
-            title={name}
-          >
-            <Divider />
-            <div className="rounded-md border-2 border-dashed border-gray-200 p-4 dark:border-gray-700">
-              {Assessment.map((item, index) => (
-                <Fragment key={index}>
-                  {item.type === AssessmentType.TASK ? (
-                    <Task
-                      submitted={item.submitted}
-                      title={item.title}
-                      description={item.description}
-                    />
-                  ) : item.type === AssessmentType.EXAM ? (
-                    <Exam title={item.title} description={item.description} />
-                  ) : null}
-                </Fragment>
-              ))}
+    <Accordion variant="splitted">
+      {courseAssessments.map(({ name, Assessment }, index) => (
+        <AccordionItem
+          indicator={({ isOpen }) => (
+            <div>
+              {isOpen ? (
+                <span>
+                  <MdRemove className="rotate-90" size={22} />
+                </span>
+              ) : (
+                <MdAdd size={22} />
+              )}
             </div>
-          </AccordionItem>
-        ))}
-      </Accordion>
-    </div>
+          )}
+          key={index}
+          aria-label="Accordion 1"
+          title={
+            <h1 className="text-xl font-semibold text-gray-800 dark:text-gray-300 dark:hover:text-white">
+              {name}
+            </h1>
+          }
+        >
+          <Divider />
+          <div className="rounded-md border-2 border-dashed border-gray-200 p-4 dark:border-gray-700">
+            {Assessment.map((item, index) => (
+              <Fragment key={index}>
+                {item.type === AssessmentType.TASK ? (
+                  <Task
+                    submitted={item.submitted}
+                    title={item.title}
+                    description={item.description}
+                  />
+                ) : item.type === AssessmentType.EXAM ? (
+                  <Exam title={item.title} description={item.description} />
+                ) : null}
+                <Divider className="last:hidden" />
+              </Fragment>
+            ))}
+          </div>
+        </AccordionItem>
+      ))}
+    </Accordion>
   );
 };
 

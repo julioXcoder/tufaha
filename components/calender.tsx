@@ -59,23 +59,6 @@ const Calendar = () => {
     }
   };
 
-  // const handleDatesSet = (dateInfo: DatesSetArg) => {
-  //   setCurrentDate(dateInfo.start);
-  //   setIsCurrentMonth(dateInfo.start.getMonth() === new Date().getMonth());
-  // };
-
-  // const handleDatesSet = (dateInfo: DatesSetArg) => {
-  //   // Get the first day of the month that is currently showing
-  //   const firstDayOfMonth = dateInfo.start;
-
-  //   // Check if the first day of the month that is showing is in the current month
-  //   const isCurrentMonth = firstDayOfMonth.getMonth() === new Date().getMonth();
-
-  //   // Set state variables
-  //   setCurrentDate(firstDayOfMonth);
-  //   setIsCurrentMonth(isCurrentMonth);
-  // };
-
   const handleDatesSet = (dateInfo: DatesSetArg) => {
     // Calculate a date in the middle of dateInfo
     const middleDate = new Date(
@@ -117,7 +100,7 @@ const Calendar = () => {
   };
 
   return (
-    <div className="bg-section-light dark:bg-section-dark h-[22rem] w-full rounded-lg px-6 pt-2">
+    <div className="h-[22rem] w-full rounded-lg bg-section-light px-6 pt-2 dark:bg-section-dark">
       <div className="my-2 flex items-center justify-between">
         <span className="text-lg font-semibold capitalize text-blue-500">{`${month} ${year}`}</span>
         <div className="flex items-center gap-x-1 ">
@@ -125,7 +108,9 @@ const Calendar = () => {
             <MdOutlineNavigateBefore size={25} />
           </button>
           {!isCurrentMonth && (
-            <button onClick={handleNavigateToday}>Today</button>
+            <button className="text-[#FF5733]" onClick={handleNavigateToday}>
+              Today
+            </button>
           )}
           <button onClick={handleNavigateNext}>
             <MdOutlineNavigateNext size={25} />
